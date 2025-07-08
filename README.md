@@ -1,9 +1,12 @@
-# iot-raspi-2025
-## 1일차
-### rasberrypi
-한글 설치 
-- sudo apt install fonts-nanum fonts-nanum-extra        // 나눔폰트 설치
-- sudo apt install fonts-unfonts-core                   // 폰트등록
+# 📡 iot-raspi-2025
+## 📅 1일차 - Raspberry Pi 환경 설정 및 기본 명령어 학습
+
+### 🈶 한글 폰트 설치
+
+```bash
+sudo apt install fonts-nanum fonts-nanum-extra      # 나눔폰트 설치
+sudo apt install fonts-unfonts-core                 # 한글 폰트 등록
+```
 
 ### 기본 명령어
 #### 📁 디렉토리 관련 명령어
