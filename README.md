@@ -1,7 +1,7 @@
 # 📡 iot-raspi-2025
 라즈베리파이 이론 및 실습
 
-## 📅 1일차 - Raspberry Pi 환경 설정 및 기본 명령어 학습
+## 1일차 - Raspberry Pi 환경 설정 및 기본 명령어 학습
 
 ### Raspberry Pi OS 설치 및 무선 설정 가이드 (Windows 기준)
 
@@ -230,3 +230,21 @@ sudo apt install fonts-unfonts-core                 # 한글 폰트 등록
 | `./[파일명]` | 현재 디렉토리에서 파일 실행 |
 
 ---
+
+## 2일차
+### rasberrypi board 구조
+<img src="./image/raspiboard.png" width="350"/>
+
+### RPI.GPIO 모듈 기본 사용법
+- GPRIO.setmode(GPIO.BOARD) : 보드의 물리적 핀 번호 기준 (1~40)
+- GPIO.setmode(GPIO.BCM) : BCM GPIO 번호 기준 (GPIO 2, GPIO 3 등)
+- GPIO.setup(chanel, GPIO.mode) # 사용할 핀 모드 설정(IN/OUT)
+- GPIO.cleanup()                # 모든 핀 초기화
+- GPIO.output(channel, state)   # HIGH(1): 5V / LOW(0): GROUND
+- GPIO.input(channel)           
+
+### 쿨다운 저항
+
+### 풀업 저항, 풀   다운 저항
+
+### LED 및 스위치 연결
