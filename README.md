@@ -231,20 +231,141 @@ sudo apt install fonts-unfonts-core                 # 한글 폰트 등록
 
 ---
 
-## 2일차
+
+## 2일차 - LED 및 스위치 연결
+
 ### rasberrypi board 구조
+
 <img src="./image/raspiboard.png" width="350"/>
 
-### RPI.GPIO 모듈 기본 사용법
-- GPRIO.setmode(GPIO.BOARD) : 보드의 물리적 핀 번호 기준 (1~40)
-- GPIO.setmode(GPIO.BCM) : BCM GPIO 번호 기준 (GPIO 2, GPIO 3 등)
-- GPIO.setup(chanel, GPIO.mode) # 사용할 핀 모드 설정(IN/OUT)
-- GPIO.cleanup()                # 모든 핀 초기화
-- GPIO.output(channel, state)   # HIGH(1): 5V / LOW(0): GROUND
-- GPIO.input(channel)           
+---
 
-### 쿨다운 저항
+## ⚙️ RPI.GPIO 모듈 기본 사용법
 
-### 풀업 저항, 풀   다운 저항
+| 명령어                          | 설명 |
+|----------------------------------|------|
+| `GPIO.setmode(GPIO.BOARD)`      | 보드의 물리적 핀 번호 기준 (1~40) |
+| `GPIO.setmode(GPIO.BCM)`        | BCM GPIO 번호 기준 (예: GPIO 2, 3 등) |
+| `GPIO.setup(pin, GPIO.OUT)`     | 지정 핀을 출력 모드로 설정 |
+| `GPIO.setup(pin, GPIO.IN)`      | 지정 핀을 입력 모드로 설정 |
+| `GPIO.output(pin, GPIO.HIGH)`   | 지정 핀에 전압 인가 (1 또는 True) |
+| `GPIO.output(pin, GPIO.LOW)`    | 지정 핀에 전압 차단 (0 또는 False) |
+| `GPIO.input(pin)`               | 입력 핀의 상태 읽기 (HIGH 또는 LOW) |
+| `GPIO.cleanup()`                | 사용한 핀 초기화 (반드시 종료 시 호출) |
 
-### LED 및 스위치 연결
+---       
+
+## ⚡ 풀업 저항 vs 풀다운 저항
+
+- **풀업 저항 (Pull-up)**: 입력 핀을 **기본적으로 HIGH(1)** 상태로 유지  
+- **풀다운 저항 (Pull-down)**: 입력 핀을 **기본적으로 LOW(0)** 상태로 유지  
+- 스위치 연결 시 핀 상태의 안정성을 위해 사용  
+- 라즈베리파이에서는 내부 풀업/풀다운 저항을 소프트웨어로 설정 가능  
+  ```python
+  GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+  GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+  ```
+
+### LED 및 스위치 연결 실습
+
+#### LED 연결
+- LED를 라즈베리파이 GPIO 핀에 직접 연결
+- 저항을 직렬로 연결하여 전류 제한
+
+- [코드보기](./day02/led.py)
+
+#### LED + 스위치 연결
+- 스위치 연속 입력을 통해 LED ON/OFF 제어
+    - 1번 : OFF
+    - 2번 : RED
+    - 3번 : GREEN
+    - 4번 : BLUE
+    - 그외 : OFF
+- 내부 풀업 저항 사용 예제 포함
+- [코드보기](./day02/buttonled.py)
+
+
+## 3일차 - 온습도 센서 데이터 DB 연동
+
+### 1. 온습도 센서 데이터 
+- DHT11 센서를 사용하여 라즈베리파이에서 온도 및 습도 데이터를 측정
+- `adafruit-circuitpython-dht` 라이브러리를 활용하여 센서 제어 및 데이터 읽기를 수행
+- [코드보기](./day03/dhtllSensor.py)
+
+    <img src="./image/dhtll01.png" width="450">
+
+### 2. DB 연동 
+- 측정된 온습도 데이터를 MariaDB(MySQL)에 실시간 저장
+- Python에서 `mysql-connector-python` 라이브러리를 사용해 MariaDB와 연동
+- [코드보기](./day03/dhtllDB.py)
+
+### 3. 환경설정
+#### 3.1 가상환경 활성화(env)
+
+```bash
+source env/bin/activate
+```
+
+#### 3.2 필요한 라이브러리 설치
+
+``` bash
+pip install adafruit-circuitpython-dht
+pip install mysql-connector-python
+sudo apt install libgpiod2
+```
+
+### 4. MariaDB 설정
+
+#### 4.1 MariaDB 접속 (root 권한)
+
+``` bash
+sudo mysql
+```
+
+#### 4.2 데이터베이스 및 테이블 생성
+```sql
+CREATE DATABASE iotdb;
+USE iotdb;
+
+CREATE TABLE dhtll (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    temperature FLOAT NOT NULL,
+    humidity FLOAT NOT NULL,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+#### 4.3 사용자 생성 및 권한 부여
+```sql
+CREATE USER 'raspi'@'localhost' IDENTIFIED BY 'raspi';
+GRANT ALL PRIVILEGES ON iotdb.* TO 'raspi'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+### 5. Python 코드 개요(dhtll.py)
+- dhtll 센서 데이터 일기
+- MariaDB에 온습도 데이터 저장
+- 예외 처리 및 자원 정리 포함
+
+### 6. 실행 및 데이터 확인
+#### 6.1. python 스크립트 실행
+
+```bash
+python dhtllDB.py
+```
+
+#### 6.2. MariaDB에서 데이터 확인
+```bash
+mysql -u raspi -p   // MariDB에 raspi 사용자로 접속
+```
+
+```sql
+USE iotdb;
+SELECT * FROM dhtll ORDER BY id DESC LIMIT 10;
+```
+
+<img src="./image/dhtll02.png" width="450">
+
+### 7. 추가 팁
+- 저장 주기를 조절하려면 time.sleep()의 값을 변경
+- 필요에 따라 데이터 시각화, 웹 연동 등의 확장도 고려
