@@ -369,3 +369,96 @@ SELECT * FROM dhtll ORDER BY id DESC LIMIT 10;
 ### 7. 추가 팁
 - 저장 주기를 조절하려면 time.sleep()의 값을 변경
 - 필요에 따라 데이터 시각화, 웹 연동 등의 확장도 고려
+
+
+## 4일차   
+
+### pyqt
+
+### 환경설정 
+1. PyQt5 설치
+```bash
+sudo apt install python3-pyqt5
+```
+2. Qt Designer 및 개발 도구 설치
+```bash
+sudo apt install qttools5-dev-tools
+```
+---
+
+## 5일차 : PWM 제어 실습
+
+라즈베리파이의 GPIO와 PWM을 이용해 피에조 부저를 제어하고,
+RGB LED 및 버튼, 키보드 입력을 활용한 다양한 응용 예제
+
+### PWM 제어(Pulse Width Modulation) - 펄스 폭 변조
+: 디지털 신호의 펄스 폭을 조절하여 아날로그 제어 효과를 얻는 기술
+
+- 피에조 부저 : 압전 효과를 이용하여 소리를 내는 부저의 한 종류
+
+---
+
+### 1. 멜로디
+
+<img src="./image/melody.gif" width="550">
+
+- 기본음(도레미...) [`buzzer_melody.py`](./day05/buzzer_melody.py) - 주파수에 따라 기본 음계 출력
+- 작은별(Twinkle) [`buzzer_twinkle.py`](./day05/buzzer_twinkle.py) - '작은 별' 멜로디 재생
+- 마리오(Super Mario) [`buzzer_mario.py`](./day05/buzzer_mario.py) - 마리오 테마곡
+- 사이렌(Siren) [`buzzer_siren.py`](./day05/buzzer_siren.py) - 경고 사이렌 효과
+
+### 2. 사이렌 + RGB LED 깜빡임 + 버튼 입력
+버튼을 누르면 사이렌 소리와 함께 RGB LED가 깜빡임
+[`buzzerLedBtn_siren.py`](./day05/buzzerLedBtn_siren.py)
+
+
+### 3. 키보드 입력으로 도레미 연주
+PC 키보드 입력을 통해 도레미파솔라시도 음을 출력
+[`buzzerMel_Kboard.py`](./day05/buzzerMel_Kboard.py)
+
+---
+
+## 6일차: 릴레이 제어 & 인터럽트 처리
+
+릴레이를 활용한 전기 회로 제어와, 인터럽트를 이용한 효율적인 이벤트 처리 방법
+
+### 릴레이 회로
+
+: 릴레이는 전자석을 이용해 외부 전기 신호로 회로를 개폐하는 전자식 스위치  
+전류가 흐르면 내부의 접점이 물리적으로 전환되어 외부 회로를 제어할 수 있음
+
+- **접점 종류**
+  - **NO (Normally Open)**: 평소에는 열려 있다가 동작 시 닫힘
+  - **NC (Normally Closed)**: 평소에는 닫혀 있다가 동작 시 열림
+  - **COM (Common)**: NO/NC와 연결되는 공통 단자
+
+▶ [`relayTest.py`](./day06/relayTest.py)
+
+### 인터럽트 (Interrupt)
+
+인터럽트는 외부(또는 내부)에서 특정 이벤트가 발생했을 때  
+현재 실행 중인 코드 흐름을 잠시 멈추고, 해당 이벤트를 처리하는 **콜백 함수**를 자동으로 호출하는 메커니즘
+
+- 이벤트 기반의 효율적인 처리 방식
+- 반복문 없이도 빠른 반응 구현 가능
+
+▶ [`interrupt.py`](./day06/interrupt.py)
+
+### 인터럽트를 활용한 LED 제어
+
+버튼 인터럽트를 활용하여 LED를 ON/OFF로 제어
+이 방식은 polling 없이 즉각적인 반응을 구현할 수 있어 효율적임
+
+▶ [`interruptLED.py`](./day06/interruptLED.py)
+
+
+## 7일차
+
+### 로그인 프로그램
+
+### web flask
+
+
+## 8일차
+
+### 사용자 정보 저장 페이지
