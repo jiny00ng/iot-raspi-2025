@@ -231,7 +231,6 @@ sudo apt install fonts-unfonts-core                 # 한글 폰트 등록
 
 ---
 
-
 ## 2일차 - LED 및 스위치 연결
 
 ### rasberrypi board 구조
@@ -284,6 +283,7 @@ sudo apt install fonts-unfonts-core                 # 한글 폰트 등록
 - 내부 풀업 저항 사용 예제 포함
 - [코드보기](./day02/buttonled.py)
 
+---
 
 ## 3일차 - 온습도 센서 데이터 DB 연동
 
@@ -370,6 +370,7 @@ SELECT * FROM dhtll ORDER BY id DESC LIMIT 10;
 - 저장 주기를 조절하려면 time.sleep()의 값을 변경
 - 필요에 따라 데이터 시각화, 웹 연동 등의 확장도 고려
 
+---
 
 ## 4일차   
 
@@ -391,6 +392,7 @@ sudo apt install qttools5-dev-tools
 라즈베리파이의 GPIO와 PWM을 이용해 피에조 부저를 제어하고,
 RGB LED 및 버튼, 키보드 입력을 활용한 다양한 응용 예제
 
+---
 ### PWM 제어(Pulse Width Modulation) - 펄스 폭 변조
 : 디지털 신호의 펄스 폭을 조절하여 아날로그 제어 효과를 얻는 기술
 
@@ -422,6 +424,8 @@ PC 키보드 입력을 통해 도레미파솔라시도 음을 출력
 
 릴레이를 활용한 전기 회로 제어와, 인터럽트를 이용한 효율적인 이벤트 처리 방법
 
+---
+
 ### 릴레이 회로
 
 : 릴레이는 전자석을 이용해 외부 전기 신호로 회로를 개폐하는 전자식 스위치  
@@ -451,13 +455,47 @@ PC 키보드 입력을 통해 도레미파솔라시도 음을 출력
 
 ▶ [`interruptLED.py`](./day06/interruptLED.py)
 
+---
 
-## 7일차
+## 7일차: 로그인 시스템 구현 & 웹 기반 LED 제어
 
-### 로그인 프로그램
+C언어를 활용한 텍스트 파일 기반 로그인 시스템을 만들고,  
+Flask 웹 서버를 통해 라즈베리파이의 LED를 원격 제어하는 방법
 
-### web flask
+---
 
+### 로그인 프로그램 (C언어)
+
+사용자의 ID와 비밀번호를 입력받아 텍스트 파일에 저장하고,  
+로그인 시 해당 파일을 참조해 인증하는 간단한 로그인 시스템
+
+- 회원가입 및 로그인 기능 구현
+- 사용자 정보는 `userFile.txt`에 저장됨
+
+▶ [`signup.c`](./day07/signup.c)  
+▶ [`userFile.txt`](./day07/userFile.txt)
+
+### Flask란?
+
+Flask는 Python 기반의 **가볍고 간단한 웹 프레임워크**로,  
+웹 서버를 쉽게 구축할 수 있어 IoT와 라즈베리파이 실습에 자주 사용
+
+- RESTful API나 HTML 페이지를 빠르게 만들 수 있음
+- 마이크로 프레임워크: 불필요한 기능 없이 필요한 부분만 선택 가능
+- IoT 장비의 상태 확인 및 제어를 웹으로 구현할 때 유용
+
+#### Flask 웹 서버를 통한 LED 제어
+
+Flask를 사용해 웹 페이지에 버튼을 만들고,  
+사용자가 버튼을 누르면 Raspberry Pi에 연결된 LED를 제어할 수 있도록 구현한 예제
+
+- 버튼 클릭 시 `/led/on`, `/led/off` 경로로 요청이 전송됨
+- 라즈베리파이의 GPIO 핀에 연결된 LED가 제어됨
+- 실제 브라우저를 통해 물리적 장치를 제어하는 웹-IoT 통합 실습
+
+▶ [`appRgbLed.py`](./day07/web/appRgbLed.py)
+
+---
 
 ## 8일차
 
