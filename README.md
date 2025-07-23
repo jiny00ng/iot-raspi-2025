@@ -589,3 +589,9 @@ warehouse-monitoring/
 ├── data/
 │   └── readings.db         # SQLite DB
 </pre>
+
+
+
+https://github.com/user-attachments/assets/82010c9a-1dc6-48e6-b47f-cc003bba14c9
+
+
