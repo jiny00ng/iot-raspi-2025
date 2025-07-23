@@ -591,8 +591,10 @@ warehouse-monitoring/
 </pre>
 
 
-### 🖥️ 6. 구현화면
+### 🖥️ 6. 구현화면 및 구현 동영상
 
 https://github.com/user-attachments/assets/82010c9a-1dc6-48e6-b47f-cc003bba14c9
+
+https://github.com/user-attachments/assets/978e2008-9d95-4a44-a166-cccf27caf9f3
 
 
