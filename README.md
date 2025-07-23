@@ -593,6 +593,6 @@ warehouse-monitoring/
 
 ### 6. 구현화면
 
-    https://github.com/user-attachments/assets/82010c9a-1dc6-48e6-b47f-cc003bba14c9
+https://github.com/user-attachments/assets/82010c9a-1dc6-48e6-b47f-cc003bba14c9
 
 
