@@ -513,6 +513,14 @@ Flask를 사용해 웹 페이지에 버튼을 만들고,
 ---
 
 <img src="./image/warehouseMonitor.png" width="850" >
+- 기본창에서 에러 발생 시
+
+---
+
+<img src="./image/warehouseMonitorDarkmode.png" width ="850">
+- 다크모드 화면
+
+---
 
 ### 🔧 주요 기능
 
