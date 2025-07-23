@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>온습도 데이터 표 보기</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}" />
+</head>
+<body>
+    <h1>📋 물류창고 온·습도 데이터 (표)</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>측정 시간</th>
+                <th>온도 (°C)</th>
+                <th>습도 (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row[0].strftime('%Y-%m-%d %H:%M:%S') }}</td>
+        <td {% if row[1] > temp_threshold %}class="alert"{% endif %}>{{ '%.1f' % row[1] }}</td>
+        <td {% if row[2] > hum_threshold %}class="alert"{% endif %}>{{ '%.1f' % row[2] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="/" style="font-size: 18px;">← 대시보드로 돌아가기</a>
+</body>
+</html>

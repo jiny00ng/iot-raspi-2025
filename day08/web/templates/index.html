@@ -1,0 +1,22 @@
+<!DOCTYPE html> <!-- HTML5 문서임을 선언 -->
+
+<html>
+<head>
+    <title>Home Network</title> <!-- 브라우저 탭에 표시될 제목 -->
+</head>
+
+<body>
+    <h3>LED Web Control</h3> <!-- 페이지에 표시될 제목 -->
+
+    <!-- LED 제어를 위한 폼: 버튼을 누르면 /data 경로로 POST 요청 전송 -->
+    <form action='/data' method='post'>
+        
+        <!-- 'on' 버튼: 빨간색으로 표시되고, led라는 이름으로 값 'on'을 전송 -->
+        <input type='submit' value='on' name='led' style='color:red'>
+
+        <!-- 'off' 버튼: led라는 이름으로 값 'off'를 전송 -->
+        <input type='submit' value='off' name='led'>
+
+    </form>
+</body>
+</html>

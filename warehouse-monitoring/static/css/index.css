@@ -1,0 +1,111 @@
+/* index.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+}
+
+h1 {
+    margin-bottom: 50px;
+}
+
+#alert-message {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.chart-container {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.chart-container canvas {
+    width: 45vw !important;
+    height: 600px !important;
+}
+
+.settings-btn-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.settings-btn {
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: #29352e;  
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.settings-btn:hover {
+  background-color: #69ce97;  
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+body.dark-mode h1 {
+    color: #90caf9;
+}
+
+body.dark-mode button {
+    background-color: #1f1f1f;
+    color: #ffffff;
+    border: 1px solid #444;
+    border-radius: 5px;
+    width: 300;
+}
+
+body.dark-mode button:hover {
+    background-color: #333;
+}
+
+body.dark-mode #alert-message {
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+body.dark-mode canvas {
+    background-color: #1e1e1e;
+}
+
+/* 다크 모드 토글 버튼 오른쪽 상단 고정 */
+#darkModeToggleBtn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+
+    font-size: 18px;     /* 글자 크기 */
+    padding: 10px 20px;  /* 버튼 안쪽 여백 (위아래 10px, 좌우 20px) */
+    border-radius: 5px;  /* 모서리 둥글게 */
+    cursor: pointer;     /* 마우스 올리면 포인터로 */
+}
+
+.logout-fixed-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #dc3545;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.logout-fixed-btn:hover {
+  background-color: #c82333;
+}

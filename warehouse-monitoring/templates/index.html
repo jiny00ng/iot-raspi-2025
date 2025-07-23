@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>온습도 대시보드</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<a href="{{ url_for('auth.logout') }}" class="logout-fixed-btn">로그아웃</a>
+
+<body>
+    <h1>📊 물류창고 온·습도 모니터링</h1>
+
+    <!-- 🌙 다크모드 전환 버튼 -->
+    <button id="darkModeToggleBtn" onclick="toggleDarkMode()">🌗 다크 모드 전환</button>
+
+    <div id="alert-message"></div>
+
+    <div class="chart-container">
+        <canvas id="tempChart"></canvas>
+        <canvas id="humiChart"></canvas>
+    </div>
+
+    <!-- 기준치 설정으로 이동하는 버튼 -->
+    <div class="settings-btn-container">
+      <a href="/settings">
+        <button class="settings-btn">⚙️ 기준치 설정 페이지</button>
+      </a>
+    </div>
+
+    <!-- 기준치 설정으로 이동하는 버튼 아래에 표 보기 버튼 추가 -->
+    <div class="settings-btn-container" style="margin-top: 10px;">
+      <a href="/table">
+        <button class="settings-btn" style="background-color: #2077b1;">📋 표 형태로 보기</button>
+      </a>
+    </div>
+
+    <!-- 다크모드 JS 추가 -->
+    <script>
+      function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem("dark-mode", document.body.classList.contains("dark-mode"));
+      }
+
+      // 페이지 로드시 저장된 모드 적용
+      window.onload = function() {
+        const darkMode = localStorage.getItem("dark-mode") === "true";
+        if (darkMode) {
+          document.body.classList.add("dark-mode");
+        }
+      };
+    </script>
+
+    <!-- 자바스크립트는 가장 아래에서 로딩 -->
+    <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+</body>
+</html>

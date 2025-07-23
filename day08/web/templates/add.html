@@ -1,0 +1,37 @@
+<!DOCTYPE html> <!-- HTML5 문서임을 선언 -->
+<html>
+<head>
+    <title>Add Employee</title> <!-- 브라우저 탭에 표시될 제목 -->
+</head>
+<body>
+    <h2>Employee Information</h2> <!-- 페이지 내 제목 -->
+
+    <!-- 폼(form) 시작: 입력한 데이터를 "/submit" 주소로 POST 방식 전송 -->
+    <form action="/submit" method="post"> 
+        <table>
+            <!-- 이름 입력 행 -->
+            <tr>
+                <td>Name</td> <!-- 라벨 -->
+                <td><input type="text" name="name"></td> <!-- 텍스트 입력 필드 - name 속성에 입력값 전달 -->
+            </tr>
+
+            <!-- 전화번호 입력 행 -->
+            <tr>
+                <td>Phone</td>
+                <td><input type="tel" name="phone"></td> <!-- 전화번호 형식 입력 -->
+            </tr>
+
+            <!-- 이메일 입력 행 -->
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="email"></td> <!-- 이메일 형식 입력 -->
+            </tr>
+
+            <!-- 제출 버튼 행 -->
+            <tr>
+                <td><input type="submit" value="submit"></td> <!-- submit 버튼 -->
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
