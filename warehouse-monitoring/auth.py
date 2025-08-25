@@ -1,3 +1,4 @@
+# 로그인/로그아웃 인증 관련 함수
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from functools import wraps
 
