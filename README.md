@@ -593,7 +593,11 @@ warehouse-monitoring/
 
 ### 🖥️ 6. 구현화면 및 구현 동영상
 
-https://github.com/user-attachments/assets/82010c9a-1dc6-48e6-b47f-cc003bba14c9
+1. 물류창고 모니터링 및 DB 연결
+
+https://github.com/user-attachments/assets/913e093e-2c23-4fb3-9858-571a463b7a88
+
+2. 물류창고 센서 및 라즈베리파이 동작
 
 https://github.com/user-attachments/assets/978e2008-9d95-4a44-a166-cccf27caf9f3
 
